@@ -1,5 +1,6 @@
 {
   "name": "hub",
+  "publisher": "lcode",
   "displayName": "hub",
   "description": "",
   "version": "0.0.1",
@@ -17,18 +18,16 @@
     "url": "https://github.com/vscode-lcode/hub"
   },
   "contributes": {
-    "commands": [
-      {
-        "command": "hub.helloWorld",
-        "title": "Hello World"
-      }
-    ]
+    "commands": []
   },
   "scripts": {
     "lint": "eslint .",
     "pretest": "yarn run lint",
     "test": "node ./test/runTest.js",
-    "vscode:prepublish": "go build -o bin/lcode-hub ./hub"
+    "build:hub": "go build -o bin/lcode-hub ./hub",
+    "vscode:prepublish": "npm run build:hub",
+    "publish": "node build.js -p",
+    "postpublish": "rm *.vsix"
   },
   "devDependencies": {
     "@types/glob": "^7.2.0",

@@ -17,8 +17,13 @@ const lists = [
 ];
 
 const vsce = require("vsce");
+const glob = require("glob");
 
-async function main() {
+const preRelease = !!process.env["VSCE_PRE"];
+/**
+ * @param {boolean} publish
+ */
+async function main(publish) {
   for (let [OS, ARCH, target] of lists) {
     console.warn(`-----------------------------------`);
     console.warn(`start build target ${target}`);
@@ -26,9 +31,18 @@ async function main() {
     process.env["GOARCH"] = ARCH;
     await vsce.createVSIX({
       target: target,
+      useYarn: true,
+      preRelease: preRelease,
     });
     console.warn(`finish build target ${target}`);
   }
+  if (publish) {
+    const packages = glob.sync("*.vsix");
+    await vsce.publishVSIX(packages, {
+      useYarn: true,
+      preRelease: preRelease,
+    });
+  }
 }
 
-main();
+main(process.argv[2] === "-p");
