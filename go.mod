@@ -2,7 +2,7 @@ module app
 
 go 1.18
 
-replace gitlab.com/jonas.jasas/httprelay => gitlab.com/shynome/httprelay v0.0.1
+replace gitlab.com/jonas.jasas/httprelay => gitlab.com/shynome/httprelay v0.1.0
 
 require (
 	github.com/donovanhide/eventsource v0.0.0-20210830082556-c59027999da0

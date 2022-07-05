@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 
 	"gitlab.com/jonas.jasas/httprelay/pkg/controller"
@@ -10,7 +11,19 @@ import (
 func NewProxy(stopChan chan struct{}) http.Handler {
 	proxyRep := repository.NewProxyRep()
 	proxyCtrl := controller.NewProxyCtrl(proxyRep, stopChan)
-	return wildcardCorsHandler(proxyCtrl.Conduct)
+	fn := wildcardAgentExistsHandler(proxyCtrl, proxyCtrl.Conduct)
+	return wildcardCorsHandler(fn)
+}
+
+func wildcardAgentExistsHandler(pc *controller.ProxyCtrl, h http.HandlerFunc) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		if !pc.HasProxySer(r.URL.Path) {
+			w.WriteHeader(http.StatusServiceUnavailable)
+			fmt.Fprint(w, "agent is not ready")
+			return
+		}
+		h(w, r)
+	}
 }
 
 func wildcardCorsHandler(h http.HandlerFunc) http.HandlerFunc {

@@ -9,3 +9,5 @@ gitlab.com/jonas.jasas/closechan v0.0.0-20200419060521-9f8eba9e316d/go.mod h1:oM
 gitlab.com/jonas.jasas/rwmock v0.0.0-20190210172938-6ed2091800f6 h1:gEARCctdh5NAsVM9yhnZD5T7oYst2L+AZyhVbECTmp4=
 gitlab.com/shynome/httprelay v0.0.1 h1:pG0w08NqQmIbouX4iJpM+4+sk0wstkHCEM54nmPL+SM=
 gitlab.com/shynome/httprelay v0.0.1/go.mod h1:x1RHISfI6g5BOVCQT+QrykX69GnVVSTW6/IxRJyQTsI=
+gitlab.com/shynome/httprelay v0.1.0 h1:+W1i2gzHqFHg4d21g6n41qLdbzXvoN4VY7PlYHXtHZs=
+gitlab.com/shynome/httprelay v0.1.0/go.mod h1:x1RHISfI6g5BOVCQT+QrykX69GnVVSTW6/IxRJyQTsI=
