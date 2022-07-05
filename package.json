@@ -11,14 +11,21 @@
     "Other"
   ],
   "activationEvents": [
-    "onUri"
+    "onUri",
+    "onFileSystem:webdav",
+    "onCommand:lcode.hub.open"
   ],
   "main": "./extension.js",
   "repository": {
     "url": "https://github.com/vscode-lcode/hub"
   },
   "contributes": {
-    "commands": []
+    "commands": [
+      {
+        "command": "lcode.hub.open",
+        "title": "lcode hub open"
+      }
+    ]
   },
   "scripts": {
     "lint": "eslint .",
@@ -30,6 +37,7 @@
     "postpublish": "rm *.vsix"
   },
   "devDependencies": {
+    "@types/eventsource": "^1.1.9",
     "@types/glob": "^7.2.0",
     "@types/mocha": "^9.1.1",
     "@types/node": "16.x",
@@ -42,6 +50,7 @@
     "vsce": "^2.9.2"
   },
   "dependencies": {
-    "node-fetch": "^3.2.6"
+    "eventsource": "^2.0.2",
+    "node-fetch-commonjs": "^3.1.1"
   }
 }

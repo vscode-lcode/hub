@@ -1,36 +1,27 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
-const vscode = require('vscode');
-
-// this method is called when your extension is activated
-// your extension is activated the very first time the command is executed
+const vscode = require("vscode");
+const { Hub } = require("./hub");
+const { UriHandler } = require("./lcode-uri");
+const { Opener } = require("./opener");
 
 /**
  * @param {vscode.ExtensionContext} context
  */
-function activate(context) {
+async function activate(context) {
+  const hub = new Hub();
+  context.subscriptions.push(hub);
 
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "hub" is now active!');
+  const hubInit = hub.init();
+  const lcodeUriHandler = new UriHandler(hubInit);
+  context.subscriptions.push(vscode.window.registerUriHandler(lcodeUriHandler));
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with  registerCommand
-	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('hub.helloWorld', function () {
-		// The code you place here will be executed every time your command is executed
-
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from hub!');
-	});
-
-	context.subscriptions.push(disposable);
+  const opener = new Opener(lcodeUriHandler);
+  context.subscriptions.push(opener);
 }
 
 // this method is called when your extension is deactivated
 function deactivate() {}
 
 module.exports = {
-	activate,
-	deactivate
-}
+  activate,
+  deactivate,
+};
