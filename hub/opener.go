@@ -17,7 +17,7 @@ func (t OpenEvent) Data() string  { return string(t) }
 
 var _ eventsource.Event = OpenEvent("")
 
-func initOpener(mux *http.ServeMux) sync.WaitGroup {
+func initOpener(mux *http.ServeMux) *sync.WaitGroup {
 	srv := eventsource.NewServer()
 	var wg sync.WaitGroup
 
@@ -39,5 +39,5 @@ func initOpener(mux *http.ServeMux) sync.WaitGroup {
 		fmt.Fprint(w, "open event has been sent")
 	})
 
-	return wg
+	return &wg
 }
