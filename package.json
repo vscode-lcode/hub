@@ -12,20 +12,11 @@
   ],
   "activationEvents": [
     "onUri",
-    "onFileSystem:webdav",
-    "onCommand:lcode.hub.open"
+    "onFileSystem:webdav"
   ],
   "main": "./extension.js",
   "repository": {
     "url": "https://github.com/vscode-lcode/hub"
-  },
-  "contributes": {
-    "commands": [
-      {
-        "command": "lcode.hub.open",
-        "title": "lcode hub open"
-      }
-    ]
   },
   "scripts": {
     "lint": "eslint .",
