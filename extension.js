@@ -14,8 +14,10 @@ async function activate(context) {
   const lcodeUriHandler = new UriHandler(hubInit);
   context.subscriptions.push(vscode.window.registerUriHandler(lcodeUriHandler));
 
-  const opener = new Opener(lcodeUriHandler);
-  context.subscriptions.push(opener);
+  lcodeUriHandler.preTask.then(() => {
+    const opener = new Opener(lcodeUriHandler);
+    context.subscriptions.push(opener);
+  });
 }
 
 // this method is called when your extension is deactivated

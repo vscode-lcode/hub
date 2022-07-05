@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 )
 
 var args struct {
@@ -21,9 +22,13 @@ func main() {
 	mux := http.DefaultServeMux
 
 	mux.Handle("/proxy/", NewProxy(stopChan))
-	initOpener(mux)
+	var wg = initOpener(mux)
 	mux.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprint(w, "it is working")
+	})
+	http.HandleFunc("/exit", func(w http.ResponseWriter, r *http.Request) {
+		wg.Wait()
+		os.Exit(0)
 	})
 
 	log.Fatal(http.ListenAndServe(args.Addr, mux))
