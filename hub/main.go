@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"log"
 	"net/http"
 )
 
@@ -25,6 +26,6 @@ func main() {
 		fmt.Fprint(w, "it is working")
 	})
 
-	http.ListenAndServe(args.Addr, mux)
+	log.Fatal(http.ListenAndServe(args.Addr, mux))
 
 }
