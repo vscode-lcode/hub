@@ -26,9 +26,14 @@ func main() {
 	mux.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprint(w, "it is working")
 	})
-	http.HandleFunc("/exit", func(w http.ResponseWriter, r *http.Request) {
+
+	var exitProgram = func() {
 		wg.Wait()
 		os.Exit(0)
+	}
+	http.HandleFunc("/exit", func(w http.ResponseWriter, r *http.Request) {
+		go exitProgram()
+		fmt.Fprint(w, "exit signal has received")
 	})
 
 	log.Fatal(http.ListenAndServe(args.Addr, mux))
