@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"strings"
 
 	"gitlab.com/jonas.jasas/httprelay/pkg/controller"
 	"gitlab.com/jonas.jasas/httprelay/pkg/repository"
@@ -17,7 +18,7 @@ func NewProxy(stopChan chan struct{}) http.Handler {
 
 func wildcardAgentExistsHandler(pc *controller.ProxyCtrl, h http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		if !pc.HasProxySer(r.URL.Path) {
+		if !strings.EqualFold(r.Method, "SERVE") && !pc.HasProxySer(r.URL.Path) {
 			w.WriteHeader(http.StatusServiceUnavailable)
 			fmt.Fprint(w, "agent is not ready")
 			return
