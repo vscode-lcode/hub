@@ -12,7 +12,7 @@ import (
 type OpenEvent string
 
 func (t OpenEvent) Id() string    { return fmt.Sprint(time.Now().UnixNano()) }
-func (t OpenEvent) Event() string { return "open" }
+func (t OpenEvent) Event() string { return "open-webdav" }
 func (t OpenEvent) Data() string  { return string(t) }
 
 var _ eventsource.Event = OpenEvent("")

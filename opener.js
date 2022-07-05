@@ -9,7 +9,7 @@ class Opener {
   constructor(handler) {
     const api = new URL("/open-handler", getLcodeAddr());
     const sse = new EventSource(api.toString());
-    sse.addEventListener("open", (e) => {
+    sse.addEventListener("open-webdav", (e) => {
       let uri = vscode.Uri.parse(e.data);
       handler.handleUri(uri);
     });
