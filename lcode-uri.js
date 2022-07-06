@@ -20,7 +20,9 @@ class UriHandler {
     let u = getWebdavUri(uri);
     uri = vscode.Uri.parse(u);
     await this.preTask;
-    await vscode.commands.executeCommand("vscode.openFolder", uri);
+    const opt = {}
+    opt.forceNewWindow = true 
+    await vscode.commands.executeCommand("vscode.openFolder", uri, opt);
   }
 }
 
