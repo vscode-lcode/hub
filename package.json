@@ -2,6 +2,7 @@
   "name": "hub",
   "publisher": "lcode",
   "displayName": "hub",
+  "icon": "icon.png",
   "description": "",
   "version": "0.1.0",
   "engines": {
