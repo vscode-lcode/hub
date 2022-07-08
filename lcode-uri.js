@@ -1,5 +1,4 @@
 const vscode = require("vscode");
-const fetch = require("node-fetch-commonjs").default;
 
 /**
  * @implements {vscode.UriHandler}
@@ -19,6 +18,11 @@ class UriHandler {
    */
   async handleUri(uri) {
     let u = getWebdavUri(uri);
+    if (uri.fragment === "file") {
+      require("child_process").execSync(`code --file-uri ${u}`);
+      return;
+    }
+
     uri = vscode.Uri.parse(u);
     await this.preTask;
     const opt = {};
@@ -35,8 +39,8 @@ class UriHandler {
  */
 function getWebdavUri(uri) {
   let u = `webdav://127.0.0.1:4349/proxy${uri.path}`;
-  if (uri.query) u = "?" + uri.query;
-  if (uri.fragment) u = "#" + uri.fragment;
+  if (uri.query) u += "?" + uri.query;
+  if (uri.fragment) u += "#" + uri.fragment;
   return u;
 }
 
