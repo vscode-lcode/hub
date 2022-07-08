@@ -24,7 +24,7 @@
     "pretest": "yarn run lint",
     "test": "node ./test/runTest.js",
     "build:hub": "go build -o bin/lcode-hub ./hub",
-    "vscode:prepublish": "npm run build:hub",
+    "vscode:prepublish": "rm *.vsix && npm run build:hub",
     "publish": "node build.js -p",
     "postpublish": "rm *.vsix"
   },
