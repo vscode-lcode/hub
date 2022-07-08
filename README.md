@@ -26,4 +26,6 @@ Host *
 
 ## Release Notes
 
-### 1.0.0
+### 0.1.2
+
+- fix: support open file
