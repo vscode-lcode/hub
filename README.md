@@ -26,6 +26,10 @@ Host *
 
 ## Release Notes
 
+### 0.1.3
+
+- change: now opened lcode dir is not appear in recent entry, beacuse we can not open it after the remote host exit lcode
+
 ### 0.1.2
 
 - fix: support open file
