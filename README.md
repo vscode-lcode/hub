@@ -26,14 +26,7 @@ Host *
 
 ## Release Notes
 
-### 0.1.4
-
-- fix: 0.1.2 的修复, 忘记设置 METHOD PROPFIND 了
-
-### 0.1.3
+### 0.2.0
 
 - change: now opened lcode dir is not appear in recent entry, beacuse we can not open it after the remote host exit lcode
-
-### 0.1.2
-
-- fix: support open file
+- add: support open file
