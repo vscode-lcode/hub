@@ -25,21 +25,6 @@ class UriHandler {
     opt.forceNewWindow = true;
     opt.noRecentEntry = true;
 
-    /**@type {import("node-fetch-commonjs").RequestInit} */
-    const rinit = { method: "PROPFIND" };
-    const isDir = await fetch(u.replace("webdav", "http"), rinit)
-      .then((r) => {
-        if (r.status !== 200) {
-          throw new Error(`agent status is not ready ${r.status}`);
-        }
-        return r;
-      })
-      .then((r) => r.text())
-      .then((xml) => /D:collection/.test(xml));
-    if (!isDir) {
-      await vscode.commands.executeCommand("vscode.open", uri, opt);
-      return;
-    }
     await vscode.commands.executeCommand("vscode.openFolder", uri, opt);
   }
 }
