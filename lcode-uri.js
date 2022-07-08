@@ -1,4 +1,5 @@
 const vscode = require("vscode");
+const fetch = require("node-fetch-commonjs").default;
 
 /**
  * @implements {vscode.UriHandler}
@@ -20,8 +21,16 @@ class UriHandler {
     let u = getWebdavUri(uri);
     uri = vscode.Uri.parse(u);
     await this.preTask;
-    const opt = {}
-    opt.forceNewWindow = true 
+    const opt = {};
+    opt.forceNewWindow = true;
+
+    const isDir = await fetch(u.replace("webdav", "http"))
+      .then((r) => r.text())
+      .then((xml) => /D:collection/.test(xml));
+    if (!isDir) {
+      await vscode.commands.executeCommand("vscode.open", uri, opt);
+      return;
+    }
     await vscode.commands.executeCommand("vscode.openFolder", uri, opt);
   }
 }
