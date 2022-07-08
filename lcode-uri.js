@@ -23,6 +23,7 @@ class UriHandler {
     await this.preTask;
     const opt = {};
     opt.forceNewWindow = true;
+    opt.noRecentEntry = true;
 
     const isDir = await fetch(u.replace("webdav", "http"))
       .then((r) => r.text())
