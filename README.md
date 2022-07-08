@@ -1,32 +1,58 @@
-# hub README
+# 简介
 
-```txt
-vscode://lcode.hub/localhost_0e_0e_0e_0e_0e/home/username/editdir
-# will transform to the webdav link
-webdav://127.0.0.1:4349/proxy/localhost_0e_0e_0e_0e_0e/home/username/editdir
+使用 vscode 编辑 ssh 主机上的文件
+
+## 使用场景
+
+```sh
+ssh your_host
+# on remote_host
+lcode ~
+vscode://lcode.hub/shy-drone-f0_f0_f0_f0_f0_f0/dav/root
+# click the above link will open vscode to edit folder
 ```
 
-## Features
+**特性**
 
-## Requirements
+- 可在无外网环境的远程主机上使用
+- 最小权限原则, 只向本地主机暴露当前要编辑的文件/目录
+- **慢** webdav+ssh 两个都是 TCP, 时延不可避免的高
 
-add port forward to your ssh config file `~/.ssh/config`
+## 预先设置
+
+### 设置本地主机的 `~/.ssh/config` 文件, 为其添加以下内容
 
 ```conf
+# ~/.ssh/config
+# config for lcode
 Host *
-  RemoteForward 4349 127.0.0.1:4349
-  # 避免多次SSH会话连接时端口冲突
+  # 转发 hub 端口
+  RemoteForward 127.0.0.1:4349 127.0.0.1:4349
+  # 避免多次端口转发
   ControlMaster auto
-  ControlPath /tmp/ssh_control_socket_%h_%p_%r
+  ControlPath /tmp/ssh_control_socket_%lcodeh_%p_%r
+  # ignore `connect_to 127.0.0.1 port 4349: failed.`
+  LogLevel FATAL
 ```
 
-## Extension Settings
+### 为远程主机添加 `lcode` 命令
 
-## Known Issues
+```sh
+wget -O /usr/local/bin/lcode https://github.com/vscode-lcode/lcode/releases/download/v0.0.4/lcode && chmod +x /usr/local/bin/lcode
+```
 
-## Release Notes
+## 更多功能
 
-### 0.2.0
+- [x] 添加 ICON
+- [ ] 远程主机一键安装脚本
+- [ ] 设置: 监听端口选项
+- [ ] Windows 远程主机支持并测试
+- [ ] 支持 [`vscode.dev`](https://vscode.dev) 编辑. 只要本地主机运行 [`lcode-hub`](https://github.com/vscode-lcode/hub) 服务就行
+- [ ] 修改[维基百科常用端口页面](https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers)表明 `4349` 端口已被 `vscode-lcode` 使用
 
-- change: now opened lcode dir is not appear in recent entry, beacuse we can not open it after the remote host exit lcode
-- add: support open file
+## 如何帮助这个项目
+
+- 提出问题 [Create Issue](https://github.com/vscode-lcode/pack/issues), 让此项目更加完善
+- 点击查看 [CONTRIBUTING.md](./CONTRIBUTING.md) 查看技术设计以便对此项目进行改进
+- <del>给作者添一根头发</del><br/>
+  <img src="./img/alipay.png" alt="alipay" width="689" height="929" style="max-width:280px;height:auto" />
