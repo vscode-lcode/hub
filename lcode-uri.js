@@ -25,7 +25,15 @@ class UriHandler {
     opt.forceNewWindow = true;
     opt.noRecentEntry = true;
 
-    const isDir = await fetch(u.replace("webdav", "http"))
+    /**@type {import("node-fetch-commonjs").RequestInit} */
+    const rinit = { method: "PROPFIND" };
+    const isDir = await fetch(u.replace("webdav", "http"), rinit)
+      .then((r) => {
+        if (r.status !== 200) {
+          throw new Error(`agent status is not ready ${r.status}`);
+        }
+        return r;
+      })
       .then((r) => r.text())
       .then((xml) => /D:collection/.test(xml));
     if (!isDir) {
