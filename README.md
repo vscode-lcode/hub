@@ -54,5 +54,4 @@ wget -O /usr/local/bin/lcode https://github.com/vscode-lcode/lcode/releases/down
 
 - 提出问题 [Create Issue](https://github.com/vscode-lcode/pack/issues), 让此项目更加完善
 - 点击查看 [CONTRIBUTING.md](./CONTRIBUTING.md) 查看技术设计以便对此项目进行改进
-- <del>给作者添一根头发</del><br/>
-  <img src="./img/alipay.png" alt="alipay" width="689" height="929" style="max-width:280px;height:auto" />
+- [点击给作者添一根头发](https://afdian.net/item?plan_id=bd853cbc03bd11ed836452540025c377)
