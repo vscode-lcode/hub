@@ -32,7 +32,7 @@ Host *
   ControlMaster auto
   ControlPath /tmp/ssh_control_socket_%lcodeh_%p_%r
   # ignore `connect_to 127.0.0.1 port 4349: failed.`
-  LogLevel FATAL
+  # LogLevel FATAL
 ```
 
 ### 为远程主机添加 `lcode` 命令
