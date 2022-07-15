@@ -37,6 +37,8 @@ func wildcardCorsHandler(h http.HandlerFunc) http.HandlerFunc {
 	}
 }
 
+const WebdavExtraMethods = ", PROPFIND, COPY, MKCOL, LOCK, UNLOCK, MOVE"
+
 func wildcardCors(w http.ResponseWriter, r *http.Request) {
 	origin := r.Header.Get("Origin")
 	if origin == "" {
@@ -46,7 +48,7 @@ func wildcardCors(w http.ResponseWriter, r *http.Request) {
 	//w.Header().Set("HttpRelay-Version", Version)
 
 	if r.Method == "OPTIONS" {
-		w.Header().Set("Access-Control-Allow-Methods", "GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS, SERVE")
+		w.Header().Set("Access-Control-Allow-Methods", "GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS, SERVE"+WebdavExtraMethods)
 		w.Header().Set("Access-Control-Allow-Headers", "*")
 	} else {
 		w.Header().Set("Access-Control-Expose-Headers", "*")
