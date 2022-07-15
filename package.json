@@ -12,9 +12,20 @@
     "Other"
   ],
   "activationEvents": [
-    "onUri",
-    "onFileSystem:webdav"
+    "onUri"
   ],
+  "contributes": {
+    "configuration": {
+      "title": "lcode hub",
+      "properties": {
+        "lcode.hub.addr": {
+          "type": "string",
+          "description": "the lcode-hub addr for connect.",
+          "default": "http://127.0.0.1:4349"
+        }
+      }
+    }
+  },
   "main": "./extension.js",
   "repository": {
     "url": "https://github.com/vscode-lcode/hub"

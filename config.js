@@ -1,7 +1,14 @@
-function getLcodeAddr() {
-  return process.env["LCODE_ADDR"] || "http://127.0.0.1:4349";
+const vscode = require("vscode");
+
+/**
+ *
+ * @returns {string}
+ */
+function getLcodeHubAddr() {
+  const hubAddr = vscode.workspace.getConfiguration("lcode.hub").get("addr");
+  return hubAddr;
 }
 
 module.exports = {
-  getLcodeAddr,
+  getLcodeHubAddr,
 };
