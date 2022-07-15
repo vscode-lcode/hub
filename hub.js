@@ -1,6 +1,6 @@
 const { spawn } = require("child_process");
 const fetch = require("node-fetch-commonjs").default;
-const { getLcodeAddr } = require("./config");
+const { getLcodeHubAddr } = require("./config");
 
 class Hub {
   constructor() {
@@ -19,7 +19,7 @@ class Hub {
    * @private
    */
   async _init() {
-    const healthApi = new URL("/health", getLcodeAddr()).toString();
+    const healthApi = new URL("/health", getLcodeHubAddr()).toString();
     let resp = await fetch(healthApi).catch(() => null);
     if (resp !== null && resp.status === 200) {
       return;
@@ -42,7 +42,7 @@ class Hub {
     }
   }
   async dispose() {
-    const exitApi = new URL("/exit", getLcodeAddr()).toString();
+    const exitApi = new URL("/exit", getLcodeHubAddr()).toString();
     await fetch(exitApi);
   }
 }
