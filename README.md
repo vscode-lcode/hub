@@ -31,14 +31,14 @@ Host *
   # 避免多次端口转发
   ControlMaster auto
   ControlPath /tmp/ssh_control_socket_%lcodeh_%p_%r
-  LocalCommand lcode-hub
+  LocalCommand $(ls ~/.vscode/extensions/lcode.hub-*/bin/lcode-hub) &
   PermitLocalCommand yes
 ```
 
 ### 为远程主机添加 `lcode` 命令
 
 ```sh
-wget -O /usr/local/bin/lcode https://github.com/vscode-lcode/lcode/releases/download/v0.0.4/lcode && chmod +x /usr/local/bin/lcode
+curl http://127.0.0.1:4349/lcode-upgrade | sh
 ```
 
 ## 更多功能
@@ -48,7 +48,7 @@ wget -O /usr/local/bin/lcode https://github.com/vscode-lcode/lcode/releases/down
 - [ ] 设置: 监听端口选项
 - [ ] Windows 远程主机支持并测试
 - [ ] 支持 [`vscode.dev`](https://vscode.dev) 编辑. 只要本地主机运行 [`lcode-hub`](https://github.com/vscode-lcode/hub) 服务就行
-- [ ] 修改[维基百科常用端口页面](https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers)表明 `4349` 端口已被 `vscode-lcode` 使用
+- [ ] 修改[维基百科常用端口页面](https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers)表明 `4349` 端口已被 `vscode-lcode` 使用. (需要帮助, vps 主机 ip 不可编辑维基百科)
 
 ## 如何帮助这个项目
 

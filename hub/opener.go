@@ -41,3 +41,24 @@ func initOpener(mux *http.ServeMux) *sync.WaitGroup {
 
 	return &wg
 }
+
+func GetOpenLink(path string, tlink string) (link string) {
+	if tlink == "" {
+		tlink = args.LinkEditorType
+	}
+	switch tlink {
+	case "pwa":
+		fallthrough
+	case "web":
+		fallthrough
+	case "browser":
+		link = fmt.Sprintf("%s/lcode.hub/%s", args.PWACode, path)
+
+	case "vscode":
+		fallthrough
+	default:
+		link = fmt.Sprintf("vscode://lcode.hub/%s", path)
+
+	}
+	return
+}
