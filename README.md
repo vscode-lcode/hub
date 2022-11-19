@@ -30,6 +30,7 @@ Host *
   RemoteForward 127.0.0.1:4349 127.0.0.1:4349
   # 避免多次端口转发
   # 如果你要修改连接配置的话, 使用-M选项创建新的连接不复用已有的主连接, 示例: ssh -MC user@host.com
+  # 复用链接会影响文件传输, 因为流量限制是对每一条tcp连接限制的, 所以传输文件时使用-M新开一个链接就好
   ControlMaster auto
   ControlPath /tmp/ssh_control_socket_%lcodeh_%p_%r
   LocalCommand $(ls ~/.vscode/extensions/lcode.hub-*/bin/lcode-hub) &
