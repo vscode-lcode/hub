@@ -29,6 +29,7 @@ Host *
   # 转发 hub 端口
   RemoteForward 127.0.0.1:4349 127.0.0.1:4349
   # 避免多次端口转发
+  # 如果你要修改连接配置的话, 使用-M选项创建新的连接不复用已有的主连接, 示例: ssh -MC user@host.com
   ControlMaster auto
   ControlPath /tmp/ssh_control_socket_%lcodeh_%p_%r
   LocalCommand $(ls ~/.vscode/extensions/lcode.hub-*/bin/lcode-hub) &
