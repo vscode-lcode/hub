@@ -4,7 +4,7 @@
   "displayName": "lcode hub",
   "icon": "icon.png",
   "description": "",
-  "version": "0.2.1",
+  "version": "1.0.0-rc.0",
   "engines": {
     "vscode": "^1.68.0"
   },
@@ -14,18 +14,6 @@
   "activationEvents": [
     "onUri"
   ],
-  "contributes": {
-    "configuration": {
-      "title": "lcode hub",
-      "properties": {
-        "lcode.hub.addr": {
-          "type": "string",
-          "description": "the lcode-hub addr for connect.",
-          "default": "http://127.0.0.1:4349"
-        }
-      }
-    }
-  },
   "main": "./extension.js",
   "repository": {
     "url": "https://github.com/vscode-lcode/hub"
@@ -34,13 +22,12 @@
     "lint": "eslint .",
     "pretest": "yarn run lint",
     "test": "node ./test/runTest.js",
-    "build:hub": "go build -o bin/lcode-hub ./hub",
+    "build:hub": "cd ./lcode && make build && cp lcode-hub ../bin/lcode-hub && cd -",
     "vscode:prepublish": "npm run build:hub",
     "publish": "node build.js -p",
     "postpublish": "rm *.vsix"
   },
   "devDependencies": {
-    "@types/eventsource": "^1.1.9",
     "@types/glob": "^7.2.0",
     "@types/mocha": "^9.1.1",
     "@types/node": "16.x",
@@ -52,8 +39,5 @@
     "typescript": "^4.7.2",
     "vsce": "^2.9.2"
   },
-  "dependencies": {
-    "eventsource": "^2.0.2",
-    "node-fetch-commonjs": "^3.1.1"
-  }
+  "dependencies": {}
 }

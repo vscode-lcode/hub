@@ -7,15 +7,14 @@ const { getWebdavUri } = require("../../lcode-uri");
 
 suite("Extension Test Suite", () => {
   vscode.window.showInformationMessage("Start all tests.");
-
   test("Sample test", () => {
     const uri = vscode.Uri.parse(
-      "vscode://lcode.hub/localhost_0e_0e_0e_0e_0e/home/username/editdir"
+      "vscode://lcode.hub/3-openwrt.lo.shynome.com:4349/root"
     );
     const wlink = getWebdavUri(uri);
     assert.equal(
       wlink,
-      "webdav://127.0.0.1:4349/proxy/localhost_0e_0e_0e_0e_0e/home/username/editdir"
+      "webdav://3-openwrt.lo.shynome.com:4349/root"
     );
   });
 });

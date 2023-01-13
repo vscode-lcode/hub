@@ -8,7 +8,7 @@
 ssh your_host
 # on remote_host
 lcode ~
-vscode://lcode.hub/shy-drone-f0_f0_f0_f0_f0_f0/dav/root
+vscode://lcode.hub/3-openwrt.lo.shynome.com:4349/root
 # click the above link will open vscode to edit folder
 ```
 
@@ -33,23 +33,26 @@ Host *
   # 复用链接会影响文件传输, 因为流量限制是对每一条tcp连接限制的, 所以传输文件时使用-M新开一个链接就好
   ControlMaster auto
   ControlPath /tmp/ssh_control_socket_%lcodeh_%p_%r
-  LocalCommand $(ls ~/.vscode/extensions/lcode.hub-*/bin/lcode-hub) &
+  #  启动 lcode-hub
+  LocalCommand $(ls ~/.vscode/extensions/lcode.hub-1.0.0*/bin/lcode-hub) --hello 'vscode://lcode.hub/%s.lo.shynome.com:4349%s' &
   PermitLocalCommand yes
 ```
 
 ### 为远程主机添加 `lcode` 命令
 
 ```sh
-curl http://127.0.0.1:4349/lcode-upgrade | sh
+echo "alias lcode='>/dev/tcp/127.0.0.1/4349 0> >(echo 0) 0>&1  2> >(grep -E ^lo: >&2) bash +o history -i -s -- -x'" >> ~/.bashrc
+source ~/.bashrc
 ```
+
+更多用法的请查看 [lcode](https://github.com/vscode-lcode/lcode)
 
 ## 更多功能
 
 - [x] 添加 ICON
-- [ ] 远程主机一键安装脚本
-- [ ] 设置: 监听端口选项
-- [ ] Windows 远程主机支持并测试
-- [ ] 支持 [`vscode.dev`](https://vscode.dev) 编辑. 只要本地主机运行 [`lcode-hub`](https://github.com/vscode-lcode/hub) 服务就行
+- [x] 远程主机一键安装脚本, 使用反弹shell无需安装
+- [x] Windows 远程主机支持, 只要支持 `bash`, `ls` 和 `dd` 即可使用
+- [ ] 支持 [`vscode.dev`](https://vscode.dev) 编辑. 只要本地主机运行 [`lcode-hub`](https://github.com/vscode-lcode/lcode) 服务就行
 - [ ] 修改[维基百科常用端口页面](https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers)表明 `4349` 端口已被 `vscode-lcode` 使用. (需要帮助, vps 主机 ip 不可编辑维基百科)
 
 ## 如何帮助这个项目

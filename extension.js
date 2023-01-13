@@ -1,7 +1,5 @@
 const vscode = require("vscode");
-const { Hub } = require("./hub");
 const { UriHandler } = require("./lcode-uri");
-const { Opener } = require("./opener");
 
 /**
  * @param {vscode.ExtensionContext} context

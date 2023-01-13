@@ -1,5 +1,4 @@
 const vscode = require("vscode");
-const config = require("./config");
 
 /**
  * @implements {vscode.UriHandler}
@@ -39,8 +38,7 @@ class UriHandler {
  * @returns {string}
  */
 function getWebdavUri(uri) {
-  const addr = config.getLcodeHubAddr().slice("http://".length);
-  let u = `webdav://${addr}/proxy${uri.path}`;
+  let u = `webdav://${uri.path.slice(1)}`;
   if (uri.query) u += "?" + uri.query;
   if (uri.fragment) u += "#" + uri.fragment;
   return u;

@@ -6,6 +6,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Release]
 
+### 1.0.0
+
+
+
 ### 0.3.0
 
 - 新增: 支持浏览器打开
