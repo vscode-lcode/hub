@@ -34,7 +34,7 @@ Host *
   ControlMaster auto
   ControlPath /tmp/ssh_control_socket_%lcodeh_%p_%r
   #  启动 lcode-hub
-  LocalCommand $(ls ~/.vscode/extensions/lcode.hub-1.0.0*/bin/lcode-hub) --hello 'vscode://lcode.hub/%s.lo.shynome.com:4349%s' &
+  LocalCommand $(ls -t ~/.vscode/extensions/lcode.hub-1.*/bin/lcode-hub | head -n 1) -log 0 --hello 'vscode://lcode.hub/{{.host}}.lo.shynome.com:4349{{.path}}' &
   PermitLocalCommand yes
 ```
 
@@ -50,7 +50,7 @@ source ~/.bashrc
 ## 更多功能
 
 - [x] 添加 ICON
-- [x] 远程主机一键安装脚本, 使用反弹shell无需安装
+- [x] 远程主机一键安装脚本, 使用反弹 shell 无需安装
 - [x] Windows 远程主机支持, 只要支持 `bash`, `ls` 和 `dd` 即可使用
 - [ ] 支持 [`vscode.dev`](https://vscode.dev) 编辑. 只要本地主机运行 [`lcode-hub`](https://github.com/vscode-lcode/lcode) 服务就行
 - [ ] 修改[维基百科常用端口页面](https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers)表明 `4349` 端口已被 `vscode-lcode` 使用. (需要帮助, vps 主机 ip 不可编辑维基百科)
