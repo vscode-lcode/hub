@@ -6,6 +6,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Release]
 
+### 1.0.5
+
+- 更新到 lcode-hub@v2.1.7. 修复: namespace 含大写字母时无法访问的问题
+
 ### 1.0.4
 
 - 修复 Readme `ssh config` 错误配置说明
