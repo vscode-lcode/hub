@@ -6,6 +6,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Release]
 
+### 1.0.4
+
+- 修复 Readme `ssh config` 错误配置说明
+
 ### 1.0.3
 
 - 更新到 lcode-hub@v2.1.6, 避免服务器上的恶意程序通过网络权限探测&获取权限外的文件
