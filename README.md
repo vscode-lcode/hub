@@ -34,7 +34,7 @@ Host *
   ControlMaster auto
   ControlPath /tmp/ssh_control_socket_%lcodeh_%p_%r
   #  启动 lcode-hub
-  LocalCommand $(ls -t ~/.vscode/extensions/lcode.hub-1.*/bin/lcode-hub | head -n 1) -log 0 --hello 'vscode://lcode.hub/{{.host}}.lo.shynome.com:4349{{.path}}' &
+  LocalCommand $(ls -t ~/.vscode/extensions/lcode.hub-1.*/bin/lcode-hub | head -n 1) -log 0 --hello 'vscode://lcode.hub/{{.host}}-{{hid}}.lo.shynome.com:4349{{.path}}' &
   PermitLocalCommand yes
 ```
 
