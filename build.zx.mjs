@@ -17,7 +17,7 @@ const targets = [
 
 const baseUrl =
   // "https://github.com/vscode-lcode/lcode/releases/latest/download/";
-  "https://github.com/vscode-lcode/lcode-hub/releases/download/v0.0.2/";
+  "https://github.com/vscode-lcode/lcode-hub/releases/download/v0.0.3/";
 
 const downloadFailed = Symbol("download failed");
 
