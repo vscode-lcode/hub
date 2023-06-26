@@ -34,5 +34,5 @@ for (let index = 0; index < targets.length; index++) {
     console.error(`skip target ${t}`);
     continue;
   }
-  await $`yarn vsce package -t ${t[2]}`;
+  await $`yarn vsce package --pre-release -t ${t[2]}`;
 }
