@@ -7,8 +7,9 @@
 ```sh
 ssh your_host
 # on remote_host
-lcode ~
-vscode://lcode.hub/3-openwrt.lo.shynome.com:4349/root
+<>/dev/tcp/127.0.0.1/4349 bash -i
+webdav://openwrt.lo.shynome.com:4349/root/
+vscode://lcode.hub/openwrt.lo.shynome.com:4349/root/
 # click the above link will open vscode to edit folder
 ```
 
@@ -34,14 +35,14 @@ Host *
   ControlMaster auto
   ControlPath /tmp/ssh_control_socket_%lcodeh_%p_%r
   #  启动 lcode-hub
-  LocalCommand $(ls -t ~/.vscode/extensions/lcode.hub-1.*/bin/lcode-hub | head -n 1) -log 0 --hello 'vscode://lcode.hub/{{.host}}-{{.hid}}.lo.shynome.com:4349{{.path}}' &
+  LocalCommand $(ls -t ~/.vscode/extensions/lcode.hub-1.*/bin/lcode-hub | head -n 1) -hello 'vscode://lcode.hub/{{.host}}.lo.shynome.com:4349{{.path}}' &
   PermitLocalCommand yes
 ```
 
 ### 为远程主机添加 `lcode` 命令
 
 ```sh
-echo "alias lcode='>/dev/tcp/127.0.0.1/4349 0> >(echo 0) 0>&1  2> >(grep -E ^lo: >&2) bash +o history -i -s -- -x'" >> ~/.bashrc
+echo "alias lcode='<>/dev/tcp/127.0.0.1/4349 bash -i'" >> ~/.bashrc
 source ~/.bashrc
 ```
 
