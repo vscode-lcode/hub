@@ -13,6 +13,10 @@ webdav://openwrt.lo.shynome.com:4349/root/
 vscode://lcode.hub/openwrt.lo.shynome.com:4349/root/
 ```
 
+## 视频展示
+
+<https://github.com/vscode-lcode/hub/assets/17316043/b2c7be9e-941a-4c14-b195-7bf2102d6d14>
+
 **特性**
 
 - 可在无外网环境的远程主机上使用
