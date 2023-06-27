@@ -2,6 +2,10 @@
 
 使用 vscode 编辑 ssh 主机上的文件, 无需在 ssh 主机上安装任何软件
 
+## 视频展示
+
+./.github/lcode-hub-show.mp4
+
 ## 使用场景
 
 ```sh
