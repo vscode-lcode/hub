@@ -33,6 +33,7 @@ Host *
   # 如果你要修改连接配置的话, 使用-M选项创建新的连接不复用已有的主连接, 示例: ssh -MC user@host.com
   # 复用链接会影响文件传输, 因为流量限制是对每一条tcp连接限制的, 所以传输文件时使用-M新开一个链接就好
   ControlMaster auto
+  ControlPath /tmp/ssh_control_socket_%h_%p_%r
   # 启动 lcode-hub. (注: 你也可以在其他地方启动 lcode-hub)
   LocalCommand $(ls -t ~/.vscode/extensions/lcode.hub-1.*/bin/lcode-hub | head -n 1) --hello 'vscode://lcode.hub/{{.host}}.lo.shynome.com:4349{{.path}}' >/dev/null &
   PermitLocalCommand yes
