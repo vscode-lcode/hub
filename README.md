@@ -25,6 +25,16 @@ vscode://lcode.hub/openwrt.lo.shynome.com:4349/root/
 
 ## 预先设置
 
+### 安装
+
+插件地址: [lcode.hub](https://marketplace.visualstudio.com/items?itemName=lcode.hub)
+
+vscode 安装命令:
+
+```sh
+ext install lcode.hub
+```
+
 ### 设置本地主机的 `~/.ssh/config` 文件, 为其添加以下内容
 
 ```conf
