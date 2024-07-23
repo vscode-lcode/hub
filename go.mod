@@ -1,4 +1,4 @@
-module github.com/vscode-lcode/hub
+module github.com/vscode-lcode/hub/v2
 
 go 1.22.5
 
