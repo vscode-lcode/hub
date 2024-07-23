@@ -1,6 +1,8 @@
 # 简介
 
-使用 vscode 编辑 ssh 主机上的文件 (基于 webdav 文件协议), 内存仅占用 3M 
+使用 vscode 编辑 ssh 主机上的文件 (基于 webdav 文件协议)
+
+内存占用仅 3M, 可以在各种主机上使用
 
 ## 如何使用
 
@@ -47,7 +49,16 @@ Host *
   PermitLocalCommand yes
 ```
 
-## 更多功能
+## 服务器端安装 lcode
+
+```sh
+wget -O /usr/local/bin/lcode https://github.com/vscode-lcode/lcode/releases/latest/download/lcode-linux-amd64
+chmod +x /usr/local/bin/lcode
+# 此时应该配置完成了
+lcode
+```
+
+# Todo
 
 - [x] 添加 ICON
 - [ ] 支持 [`vscode.dev`](https://vscode.dev) 编辑. 只要本地主机运行 [`lcode-hub`](https://github.com/vscode-lcode/lcode) 服务就行
