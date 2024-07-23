@@ -6,6 +6,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Release]
 
+### 2.0.1
+
+- 修复服务二次启动导致的输出霸屏
+
 ### 2.0.0
 
 替换掉 [lcode-hub](https://github.com/vscode-lcode/lcode-hub), 基于 `bash` 的 `webdav` 终究是不够可靠, 还是使用反向代理的模式稳定
