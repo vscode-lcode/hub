@@ -15,7 +15,7 @@ vscode://lcode.hub/openwrt.lo.shynome.com:4349/root
 
 ## 视频演示
 
-<https://github.com/vscode-lcode/hub/assets/17316043/b2c7be9e-941a-4c14-b195-7bf2102d6d14>
+<https://github.com/user-attachments/assets/5b7d26ed-9802-46b3-aaf1-fbd274cf107d>
 
 # 配置
 
