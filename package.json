@@ -4,7 +4,7 @@
   "displayName": "lcode hub",
   "icon": "icon.png",
   "description": "",
-  "version": "2.0.8",
+  "version": "2.0.9",
   "engines": {
     "vscode": "^1.68.0"
   },

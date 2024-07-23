@@ -6,6 +6,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Release]
 
+### 2.0.9 - 2023-07-24
+
+- 更新插件文档
+
 ### 2.0.8
 
 - 修复: hostname 始终使用小写格式, 与 http 访问链接时域名自动转小写保持一致
