@@ -2,7 +2,7 @@
 
 /**@typedef {import("zx/globals")} */
 
-const targets = [
+let targets = [
   ["windows", "amd64", "win32-x64"],
   ["windows", "386", "win32-ia32"],
   ["windows", "arm64", "win32-arm64"],
@@ -15,24 +15,11 @@ const targets = [
   ["darwin", "arm64", "darwin-arm64"],
 ];
 
-const baseUrl =
-  // "https://github.com/vscode-lcode/lcode/releases/latest/download/";
-  "https://github.com/vscode-lcode/lcode-hub/releases/download/v0.0.6/";
-
-const downloadFailed = Symbol("download failed");
-
 await $`rm -rf *.vsix`;
 
 for (let index = 0; index < targets.length; index++) {
   let t = targets[index];
   console.log(`[${index + 1}/${targets.length}] progress`);
-  let binLink = new URL(`lcode-hub-${t[0]}-${t[1]}`, baseUrl);
-  let download = $`wget -qO bin/lcode-hub ${binLink}`;
-  let result = await download.catch(() => downloadFailed);
-  await $`chmod +x bin/lcode-hub`;
-  if (result === downloadFailed) {
-    console.error(`skip target ${t}`);
-    continue;
-  }
+  await $`GOOS=${t[0]} GOARCH=${t[1]} go build -ldflags="-X 'main.Version=$(git describe --tags --always --dirty)' -s -w" -o bin/lcode-hub .`;
   await $`yarn vsce package -t ${t[2]}`;
 }
