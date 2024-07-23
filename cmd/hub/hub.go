@@ -60,6 +60,7 @@ func (hub *Hub) handleLink(w http.ResponseWriter, r *http.Request) (err error) {
 		return
 	}
 	hostname, hash := protocols[1], protocols[2]
+	hostname = strings.ToLower(hostname)
 	host := fmt.Sprintf(hub.hostTpl, hostname)
 	hhost := hub.SetHost(host, hash)
 	if hhost == nil {
