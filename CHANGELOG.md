@@ -6,6 +6,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Release]
 
+### 2.0.0
+
+替换掉 [lcode-hub](https://github.com/vscode-lcode/lcode-hub), 基于 `bash` 的 `webdav` 终究是不够可靠, 还是使用反向代理的模式稳定
+
 ### 1.0.6
 
 - 更新到 lcode-hub@v2.1.8. 修复编辑目标是文件夹是以/结尾时无法通过路径结尾不带/的路径访问 (因为 vscode 第一次访问是路径末尾不带/访问)

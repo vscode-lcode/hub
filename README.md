@@ -1,12 +1,13 @@
 # 简介
 
-使用 vscode 编辑 ssh 主机上的文件, 无需在 ssh 主机上安装任何软件
+使用 vscode 编辑 ssh 主机上的文件, 基于 ssh 反向端口转发
 
 ## 使用场景
 
 ```sh
 ssh openwrt
 # download lcode
+# https://github.com/vscode-lcode/lcode/releases
 # on remote_host
 lcode
 webdav://openwrt.lo.shynome.com:4349/root/
@@ -50,24 +51,13 @@ Host *
   ControlMaster auto
   ControlPath /tmp/ssh_control_socket_%h_%p_%r
   # 启动 lcode-hub. (注: 你也可以在其他地方启动 lcode-hub)
-  LocalCommand $(ls -t ~/.vscode/extensions/lcode.hub-1.*/bin/lcode-hub | head -n 1) --hello 'vscode://lcode.hub/{{.host}}.lo.shynome.com:4349{{.path}}' >/dev/null &
+  LocalCommand $(ls -t ~/.vscode/extensions/lcode.hub-2.*/bin/lcode-hub | head -n 1) --domain 'lo.shynome.com' >/dev/null &
   PermitLocalCommand yes
 ```
-
-### 为远程主机添加 `lcode` 命令
-
-```sh
-echo "alias lcode='<>/dev/tcp/127.0.0.1/4349 bash -i -s --'" >> ~/.bashrc
-source ~/.bashrc
-```
-
-更多用法的请查看 [lcode-hub](https://github.com/vscode-lcode/lcode-hub)
 
 ## 更多功能
 
 - [x] 添加 ICON
-- [x] 远程主机一行命令运行 webdav server, 基于反弹 shell 无需安装
-- [x] Windows 远程主机支持, 只要支持 `bash`, `ls` 和 `dd` 即可使用
 - [ ] 支持 [`vscode.dev`](https://vscode.dev) 编辑. 只要本地主机运行 [`lcode-hub`](https://github.com/vscode-lcode/lcode) 服务就行
 - [ ] 修改[维基百科常用端口页面](https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers)表明 `4349` 端口已被 `vscode-lcode` 使用. (需要帮助, vps 主机 ip 不可编辑维基百科)
 
