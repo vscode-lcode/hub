@@ -6,6 +6,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Release]
 
+### 2.0.4
+
+- 修复错误发布的问题
+
 ### 2.0.1
 
 - 修复服务二次启动导致的输出霸屏
