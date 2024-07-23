@@ -6,9 +6,13 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Release]
 
+### 2.0.7
+
+- 优化: yamux 错误日志输出由 stderr 更改为 stdout
+
 ### 2.0.6
 
-- fix: 跟随版本变化
+- fix: 跟随 go mod 版本变化
 
 ### 2.0.5
 
