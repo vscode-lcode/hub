@@ -4,7 +4,7 @@
 
 let targets = [
   ["windows", "amd64", "win32-x64"],
-  ["windows", "386", "win32-ia32"],
+  // ["windows", "386", "win32-ia32"],
   ["windows", "arm64", "win32-arm64"],
   ["linux", "amd64", "linux-x64"],
   ["linux", "arm64", "linux-arm64"],
