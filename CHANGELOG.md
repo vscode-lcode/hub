@@ -6,6 +6,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Release]
 
+### 2.0.6
+
+- fix: 跟随版本变化
+
 ### 2.0.5
 
 - 同步 go mod 版本分支
