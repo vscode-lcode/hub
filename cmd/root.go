@@ -12,7 +12,7 @@ import (
 
 	"github.com/shynome/err0/try"
 	"github.com/spf13/cobra"
-	"github.com/vscode-lcode/hub/cmd/hub"
+	"github.com/vscode-lcode/hub/v2/cmd/hub"
 )
 
 var args struct {

@@ -7,7 +7,7 @@ import (
 	"sync"
 
 	"github.com/google/uuid"
-	"github.com/vscode-lcode/hub/cmd/hub/fl"
+	"github.com/vscode-lcode/hub/v2/cmd/hub/fl"
 	"golang.org/x/net/webdav"
 )
 
