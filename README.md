@@ -1,33 +1,23 @@
 # 简介
 
-使用 vscode 编辑 ssh 主机上的文件, 基于 ssh 反向端口转发
+使用 vscode 编辑 ssh 主机上的文件 (基于 webdav 文件协议), 内存仅占用 3M 
 
-## 使用场景
+## 如何使用
 
 ```sh
 ssh openwrt
-# download lcode
-# https://github.com/vscode-lcode/lcode/releases
-# on remote_host
 lcode
-webdav://openwrt.lo.shynome.com:4349/root/
 # click the above link will open vscode to edit folder
-vscode://lcode.hub/openwrt.lo.shynome.com:4349/root/
+vscode://lcode.hub/openwrt.lo.shynome.com:4349/root
 ```
 
-## 视频展示
+## 视频演示
 
 <https://github.com/vscode-lcode/hub/assets/17316043/b2c7be9e-941a-4c14-b195-7bf2102d6d14>
 
-**特性**
+# 配置
 
-- 可在无外网环境的远程主机上使用
-- 最小权限原则, 只向本地主机暴露当前运行的目录
-- **慢** webdav+ssh 两个都是 TCP, 时延不可避免的高
-
-## 预先设置
-
-### 安装
+## VSCode 安装插件
 
 插件地址: [lcode.hub](https://marketplace.visualstudio.com/items?itemName=lcode.hub)
 
@@ -37,7 +27,9 @@ vscode 安装命令:
 ext install lcode.hub
 ```
 
-### 设置本地主机的 `~/.ssh/config` 文件, 为其添加以下内容
+## 配置 ssh config
+
+设置本地主机的 `~/.ssh/config` 文件, 为其添加以下内容
 
 ```conf
 # ~/.ssh/config
@@ -45,13 +37,13 @@ ext install lcode.hub
 Host *
   # 转发 hub 端口
   RemoteForward 127.0.0.1:4349 127.0.0.1:4349
-  # 避免多次端口转发
-  # 如果你要修改连接配置的话, 使用-M选项创建新的连接不复用已有的主连接, 示例: ssh -MC user@host.com
+  # 复用链接避免多次端口转发
+  # 如果要修改连接配置的话, 使用-M选项创建新的连接不复用已有的主连接, 示例: ssh -MC user@host.com
   # 复用链接会影响文件传输, 因为流量限制是对每一条tcp连接限制的, 所以传输文件时使用-M新开一个链接就好
   ControlMaster auto
   ControlPath /tmp/ssh_control_socket_%h_%p_%r
   # 启动 lcode-hub. (注: 你也可以在其他地方启动 lcode-hub)
-  LocalCommand $(ls -t ~/.vscode/extensions/lcode.hub-2.*/bin/lcode-hub | head -n 1) --domain 'lo.shynome.com' >/dev/null &
+  LocalCommand $(ls -t ~/.vscode/extensions/lcode.hub-2.*/bin/lcode-hub | head -n 1) >/dev/null &
   PermitLocalCommand yes
 ```
 
@@ -65,4 +57,3 @@ Host *
 
 - 提出问题 [Create Issue](https://github.com/vscode-lcode/hub/issues), 让此项目更加完善
 - 点击查看 [CONTRIBUTING.md](./CONTRIBUTING.md) 查看技术设计以便对此项目进行改进
-- [点击给作者添一根头发](https://afdian.net/item?plan_id=bd853cbc03bd11ed836452540025c377)
