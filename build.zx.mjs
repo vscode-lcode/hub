@@ -23,3 +23,6 @@ for (let index = 0; index < targets.length; index++) {
   await $`GOOS=${t[0]} GOARCH=${t[1]} go build -ldflags="-X 'main.Version=$(git describe --tags --always --dirty)' -s -w" -o bin/lcode-hub .`;
   await $`yarn vsce package -t ${t[2]}`;
 }
+
+// 如何发布:
+// yarn vsce publish -i *.vsix
