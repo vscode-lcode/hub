@@ -8,6 +8,7 @@ import (
 	"net"
 	"net/http"
 	"os"
+	"time"
 
 	"github.com/shynome/err0/try"
 	"github.com/spf13/cobra"
@@ -25,6 +26,10 @@ var rootCmd = &cobra.Command{
 	Short: "",
 	Long:  ``,
 	Run: func(cmd *cobra.Command, _args []string) {
+		if _, err := net.DialTimeout("tcp", args.addr, time.Second); err == nil {
+			fmt.Println("服务已启动")
+			return
+		}
 		l := try.To1(net.Listen("tcp", args.addr))
 		port := l.Addr().(*net.TCPAddr).Port
 		hostTpl := fmt.Sprintf("%%s.%s:%d", args.domain, port)
