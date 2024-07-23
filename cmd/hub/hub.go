@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"net/http/httputil"
 	"net/url"
+	"os"
 	"strings"
 	"sync"
 
@@ -82,7 +83,9 @@ func (hub *Hub) handleLink(w http.ResponseWriter, r *http.Request) (err error) {
 
 	conn := websocket.NetConn(ctx, socket, websocket.MessageBinary)
 
-	sess := try.To1(yamux.Server(conn, nil))
+	yc := yamux.DefaultConfig()
+	yc.LogOutput = os.Stdout
+	sess := try.To1(yamux.Server(conn, yc))
 	defer sess.Close()
 
 	proxy := httputil.NewSingleHostReverseProxy(fakeTarget)
