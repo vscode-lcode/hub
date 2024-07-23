@@ -6,8 +6,9 @@
 
 ```sh
 ssh openwrt
+# download lcode
 # on remote_host
-<>/dev/tcp/127.0.0.1/4349 bash -i
+lcode
 webdav://openwrt.lo.shynome.com:4349/root/
 # click the above link will open vscode to edit folder
 vscode://lcode.hub/openwrt.lo.shynome.com:4349/root/
