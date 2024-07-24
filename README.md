@@ -1,10 +1,8 @@
 # 简介
 
-使用 vscode 编辑 ssh 主机上的文件 (基于 webdav 文件协议)
+通过 webdav 协议使用本地 vscode 编辑服务器文件, 低内存占用
 
-内存占用仅 3M, 可以在各种主机上使用
-
-## 如何使用
+# 如何使用
 
 ```sh
 ssh openwrt
