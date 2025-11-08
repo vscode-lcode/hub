@@ -6,6 +6,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Release]
 
+### 2.1.0 - 2025-11-08
+
+破坏性更新, 移除了 lcode-hub 二进制文件, 将其移动到[独立仓库](https://github.com/vscode-lcode/lcode-hub/tree/v2)了, 现在扩展简单多了
+
 ### 2.0.9 - 2023-07-24
 
 - 更新插件文档
