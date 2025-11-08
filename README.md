@@ -27,6 +27,10 @@ vscode 安装命令:
 ext install lcode.hub
 ```
 
+## 本机安装 lcode-hub
+
+前往 https://github.com/vscode-lcode/lcode-hub/releases 下载安装 lcode-hub 安装包
+
 ## 配置 ssh config
 
 设置本地主机的 `~/.ssh/config` 文件, 为其添加以下内容
@@ -42,9 +46,6 @@ Host *
   # 复用链接会影响文件传输, 因为流量限制是对每一条tcp连接限制的, 所以传输文件时使用-M新开一个链接就好
   ControlMaster auto
   ControlPath /tmp/ssh_control_socket_%h_%p_%r
-  # 启动 lcode-hub. (注: 你也可以在其他地方启动 lcode-hub)
-  LocalCommand $(ls -t ~/.vscode/extensions/lcode.hub-2.*/bin/lcode-hub | head -n 1) >/dev/null &
-  PermitLocalCommand yes
 ```
 
 ## 服务器端安装 lcode
